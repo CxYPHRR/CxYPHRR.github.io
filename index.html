@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CxYPHRR — Ghostwriter</title>
+<meta name="description" content="CxYPHRR — ghostwriter for hire. Dark romance, psychological horror, audio drama, historical fiction.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e0c0d;
+    --ink-panel:#171314;
+    --paper:#e9e2d6;
+    --paper-dim:#c9c0ae;
+    --blood:#8c2430;
+    --blood-bright:#b23744;
+    --ash:#7a716a;
+    --line:#332c29;
+    --line-soft:#241f1d;
+    --serif: 'Cormorant Garamond', serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--serif);
+    font-size:19px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:1px solid var(--blood-bright);
+    outline-offset:4px;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--blood-bright);
+  }
+
+  /* ---------- Margin annotation, the signature element ---------- */
+  .marginalia{
+    position:relative;
+    padding-left:22px;
+  }
+  .marginalia::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0.35em;
+    bottom:0.35em;
+    width:1px;
+    background:var(--blood);
+    opacity:0.55;
+  }
+  .marginalia .note{
+    display:block;
+    font-family:var(--mono);
+    font-style:italic;
+    font-size:12.5px;
+    color:var(--blood-bright);
+    letter-spacing:0.02em;
+    margin-bottom:6px;
+    opacity:0.85;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(14,12,13,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-decoration:none;
+  }
+  .brand em{
+    color:var(--blood-bright);
+    font-style:normal;
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    list-style:none;
+  }
+  .navlinks a{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--ash);
+    transition:color 0.2s ease;
+  }
+  .navlinks a:hover{color:var(--paper);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:120px 0 96px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .hero .eyebrow{margin-bottom:22px; display:block;}
+  .hero h1{
+    font-size:clamp(52px, 9vw, 96px);
+    font-weight:500;
+    font-style:italic;
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    max-width:11ch;
+  }
+  .hero .role{
+    margin-top:26px;
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--paper-dim);
+    max-width:52ch;
+    line-height:1.8;
+  }
+  .hero .role strong{color:var(--paper); font-weight:500;}
+  .hero-stamp{
+    margin-top:44px;
+  }
+  .hero-stamp .note{margin-bottom:8px;}
+  .hero-stamp p{
+    font-size:17px;
+    font-style:italic;
+    color:var(--paper-dim);
+    max-width:46ch;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  section:last-of-type{border-bottom:none;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:48px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:38px;
+    font-weight:500;
+    font-style:italic;
+  }
+  .section-head .tally{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ash);
+    letter-spacing:0.06em;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1.5fr;
+    gap:56px;
+  }
+  .about-grid .pull{
+    font-size:26px;
+    font-style:italic;
+    line-height:1.35;
+    color:var(--paper);
+  }
+  .about-grid .body p{
+    color:var(--paper-dim);
+    margin-bottom:18px;
+    font-size:18px;
+  }
+  .about-grid .body p:last-child{margin-bottom:0;}
+
+  /* ---------- Work: manuscript ledger ---------- */
+  .ledger{
+    border-top:1px solid var(--line);
+  }
+  .ledger-row{
+    display:grid;
+    grid-template-columns:70px 1fr 160px 130px;
+    gap:20px;
+    align-items:baseline;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    transition:padding-left 0.25s ease, border-color 0.25s ease;
+  }
+  .ledger-row:hover{
+    padding-left:10px;
+    border-color:var(--blood);
+  }
+  .ledger-row .no{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ash);
+  }
+  .ledger-row .title{
+    font-size:23px;
+    font-style:italic;
+  }
+  .ledger-row .genre{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--blood-bright);
+  }
+  .ledger-row .status{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ash);
+    text-align:right;
+  }
+
+  /* ---------- Writing samples ---------- */
+  .samples{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .sample-card{
+    background:var(--ink);
+    padding:36px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .sample-card .tag{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--blood-bright);
+  }
+  .sample-card .excerpt{
+    font-size:19px;
+    font-style:italic;
+    color:var(--paper-dim);
+    line-height:1.55;
+    flex-grow:1;
+  }
+  .sample-card .meta{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ash);
+    display:flex;
+    justify-content:space-between;
+    padding-top:12px;
+    border-top:1px solid var(--line-soft);
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-inner{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:32px;
+  }
+  .contact h2{
+    font-size:44px;
+    font-style:italic;
+    font-weight:500;
+    max-width:14ch;
+    line-height:1.1;
+  }
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:flex-end;
+  }
+  .contact-links a{
+    font-family:var(--mono);
+    font-size:14px;
+    text-decoration:none;
+    color:var(--paper-dim);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color 0.2s ease, border-color 0.2s ease;
+  }
+  .contact-links a:hover{
+    color:var(--paper);
+    border-color:var(--blood-bright);
+  }
+
+  footer{
+    padding:28px 0 60px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ash);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:760px){
+    .navlinks{display:none;}
+    .hero{padding:88px 0 64px;}
+    .about-grid{grid-template-columns:1fr; gap:32px;}
+    .ledger-row{
+      grid-template-columns:1fr;
+      gap:6px;
+      padding:20px 0;
+    }
+    .ledger-row .status{text-align:left;}
+    .samples{grid-template-columns:1fr;}
+    .contact-inner{align-items:flex-start;}
+    .contact-links{align-items:flex-start;}
+    .contact h2{font-size:34px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#top" class="brand">CxY<em>PHRR</em></a>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#samples">Samples</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <span class="eyebrow">Ghostwriter — fiction for hire</span>
+    <h1>Stories written<br>in someone<br>else's name.</h1>
+    <p class="role">Five years writing <strong>dark romance</strong>, <strong>psychological horror</strong>, <strong>audio drama</strong>, and <strong>historical fiction</strong> — under contract, under pen names, under deadline.</p>
+
+    <div class="hero-stamp marginalia">
+      <span class="note">margin note — filed 2026</span>
+      <p>Every manuscript below shipped to a client or a platform. Nothing here is a placeholder — this is the actual ledger.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="about">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="tally">est. 5 yrs</span>
+    </div>
+    <div class="about-grid">
+      <div class="pull marginalia">
+        <span class="note">the short version</span>
+        I write the books other names go on the cover of.
+      </div>
+      <div class="body">
+        <p>I'm a ghostwriter and scriptwriter working across dark romance, psychological horror, and audio drama — the kind of fiction that asks readers to sit with discomfort, obsession, and things that don't resolve cleanly. I also write sci-fi, and it's where some of my sharpest world-building happens.</p>
+        <p>Most projects come to me as a beat sheet, a voice sample, or a half-finished draft. My job is to disappear into the client's voice and deliver chapters that read like they were always theirs — on schedule, without the seams showing.</p>
+        <p>Outside of client work, I build the tools I use to manage it: this site, my writing trackers, and the front-end skills that keep the business side of ghostwriting running without friction.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="work">
+    <div class="section-head">
+      <h2>Work</h2>
+      <span class="tally">manuscript ledger</span>
+    </div>
+    <div class="ledger">
+      <div class="ledger-row">
+        <span class="no">01</span>
+        <span class="title">Client Manuscript — Crime & Psychological Suspense</span>
+        <span class="genre">Thriller</span>
+        <span class="status">Complete</span>
+      </div>
+      <div class="ledger-row">
+        <span class="no">02</span>
+        <span class="title">Client Manuscript — Supernatural Fiction</span>
+        <span class="genre">Supernatural</span>
+        <span class="status">Complete</span>
+      </div>
+      <div class="ledger-row">
+        <span class="no">03</span>
+        <span class="title">Client Novel — Office / Billionaire Romance</span>
+        <span class="genre">Contemporary Romance</span>
+        <span class="status">Complete</span>
+      </div>
+      <div class="ledger-row">
+        <span class="no">04</span>
+        <span class="title">Client Manuscript — Mythology / Fantasy</span>
+        <span class="genre">Speculative Fiction</span>
+        <span class="status">Ongoing</span>
+      </div>
+      <div class="ledger-row">
+        <span class="no">05</span>
+        <span class="title">Audio Drama Script Series</span>
+        <span class="genre">M4F / Roleplay</span>
+        <span class="status">Ongoing</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="samples">
+    <div class="section-head">
+      <h2>Writing samples</h2>
+      <span class="tally">excerpts on request</span>
+    </div>
+    <div class="samples">
+      <div class="sample-card">
+        <span class="tag">Dark Romance</span>
+        <p class="excerpt">"He never raised his voice. He didn't need to — the room learned to hold its breath without being told."</p>
+        <div class="meta"><span>Excerpt 01</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Psychological Horror</span>
+        <p class="excerpt">"The house remembered things she hadn't told it yet. That was the part she never explained to anyone."</p>
+        <div class="meta"><span>Excerpt 02</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Audio Drama</span>
+        <p class="excerpt">"Say it again — slower this time. I want to hear the exact moment you stop meaning it as a joke."</p>
+        <div class="meta"><span>Excerpt 03</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Historical Fiction</span>
+        <p class="excerpt">"The letter arrived unsigned. She recognized the hand anyway — some things a person can't disguise, even in ink."</p>
+        <div class="meta"><span>Excerpt 04</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Crime & Psychological Suspense</span>
+        <p class="excerpt">"She had shiny black hair, tied up into a strict bun, framing ice blue eyes and a pale face with cheekbones that looked sharp enough to slice fruit."</p>
+        <div class="meta"><span>Excerpt 05</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Supernatural Fiction</span>
+        <p class="excerpt">"You. You're him," he said in shock. "You are the fallen angel."</p>
+        <div class="meta"><span>Excerpt 06</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Office / Billionaire Romance</span>
+        <p class="excerpt">"You look stunning," he complimented. "I'm famished."</p>
+        <div class="meta"><span>Excerpt 07</span><span>Sample</span></div>
+      </div>
+      <div class="sample-card">
+        <span class="tag">Mythology / Fantasy</span>
+        <p class="excerpt">"Buckle up, everyone," Heracles said. "There is a war coming."</p>
+        <div class="meta"><span>Excerpt 08</span><span>Sample</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="contact-inner contact">
+      <h2>Available for client work and collaborations.</h2>
+      <div class="contact-links">
+        <a href="https://x.com/cxyphrr" target="_blank" rel="noopener">X ↗</a>
+        <a href="https://www.linkedin.com/in/utibeimaabasi-ephraim-5ba019379" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 CxYPHRR</span>
+    <span>Built with ink, not templates.</span>
+  </div>
+</footer>
+
+</body>
+</html>
